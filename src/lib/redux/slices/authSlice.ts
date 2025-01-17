@@ -23,45 +23,58 @@ const initialState: AuthState = {
 export const login = createAsyncThunk(
   'auth/login',
   async ({ email, password }: { email: string; password: string }) => {
-    const response = await fetch(`${API_URL}/api/v1/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-    
-    if (!response.ok) {
+    try {
+      const response = await fetch(`${API_URL}/api/v1/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      
+      if (!response.ok) {
+        toast.error('Login failed')
+        throw new Error('Login failed');
+      }
+      
+      const data = await response.json();
+      if (!data.token){
+        toast.error(data.message);
+      } else {
+        localStorage.setItem('token', data.token);
+        return data;
+      }
+      
+    } catch (error) {
       toast.error('Login failed')
-      throw new Error('Login failed');
     }
-    
-    const data = await response.json();
-    localStorage.setItem('token', data.token);
-    return data;
   }
 );
 
 export const register = createAsyncThunk(
   'auth/register',
   async ({ email, password, username }: { email: string; password: string; username: string }) => {
-    const response = await fetch(`${API_URL}/api/v1/auth/register`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password, username }),
-    });
-    
-    if (!response.ok) {
+    try {
+      const response = await fetch(`${API_URL}/api/v1/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, username }),
+      });
+      
+      if (!response.ok) {
+        toast.error('Registration failed')
+        throw new Error('Registration failed');
+      }
+      const data = await response.json();
+      
+      if (!data.user){
+        toast.error(data.message);
+      }
+      else {
+        toast.error("Registered successfully.");
+        localStorage.setItem('token', data.token);
+        return data;
+      }
+    } catch (error) {
       toast.error('Registration failed')
-      throw new Error('Registration failed');
-    }
-    const data = await response.json();
-    
-    if (!data.user){
-      toast.error("User already exist.");
-      return data
-    }
-    else {
-      localStorage.setItem('token', data.token);
-      return data;
     }
   }
 );
@@ -90,7 +103,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
-        state.isLoggedIn = true
+        state.isLoggedIn = true;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
@@ -104,6 +117,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state.isLoggedIn = true;
       })
       .addCase(register.rejected, (state, action) => {
         state.loading = false;
