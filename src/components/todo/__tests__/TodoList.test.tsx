@@ -69,10 +69,6 @@ describe('TodoList', () => {
   });
 
   test('handles todo completion toggle', async () => {
-    const updatedTodo = {
-      ...mockTodos[0],
-      completed: true
-    };
   
     const store = createMockStore({ 
       todos: mockTodos,

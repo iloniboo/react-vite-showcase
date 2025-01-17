@@ -4,7 +4,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import { expect, vi } from 'vitest';
 import { TodoForm } from '../TodoForm';
 import todoReducer from '@/lib/redux/slices/todoSlice';
-import { TodoList } from '../TodoList';
 
 vi.mock('sonner', () => ({
   toast: {

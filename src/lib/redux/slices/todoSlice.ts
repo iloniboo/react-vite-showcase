@@ -53,7 +53,7 @@ export const addTodo = createAsyncThunk(
 
 export const updateTodo = createAsyncThunk(
   'todos/updateTodo',
-  async ({ id, todo }: { id: string; todo: Partial<TodoFormData> }, { getState }) => {
+  async ({ id, todo }: { id: string; todo: any }, { getState }) => {
     const { auth } = getState() as { auth: { token: string } };
     const response = await fetch(`${API_URL}/api/v1/todo/${id}`, {
       method: 'PATCH',
