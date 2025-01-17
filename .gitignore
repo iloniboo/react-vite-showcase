@@ -26,3 +26,6 @@ tsconfig.app.tsbuildinfo
 *.njsproj
 *.sln
 *.sw?
+
+.env
+

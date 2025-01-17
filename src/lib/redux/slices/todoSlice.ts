@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { Todo, TodoFormData } from '@/types/todo';
-const API_URL = 'https://every-vote-backend.vercel.app'
+import { toast } from 'sonner';
+import dotenv from 'dotenv'
+dotenv.config()
+const API_URL =process.env.API_URL
 
 interface TodoState {
   todos: Todo[];
@@ -44,6 +47,7 @@ export const addTodo = createAsyncThunk(
     });
     
     if (!response.ok) {
+      toast.error('Failed to add todo');
       throw new Error('Failed to add todo');
     }
     
@@ -65,6 +69,7 @@ export const updateTodo = createAsyncThunk(
     });
     
     if (!response.ok) {
+      toast.error('Failed to update todo');
       throw new Error('Failed to update todo');
     }
     
@@ -84,6 +89,7 @@ export const deleteTodo = createAsyncThunk(
     });
     
     if (!response.ok) {
+      toast.error('Failed to update todo');
       throw new Error('Failed to delete todo');
     }
     

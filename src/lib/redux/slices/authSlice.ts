@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { User } from '@/types/todo';
-
-const API_URL = 'https://every-vote-backend.vercel.app'
+import { toast } from 'sonner';
+import dotenv from 'dotenv'
+dotenv.config()
+const API_URL =process.env.API_URL
 
 interface AuthState {
   user: User | null;
@@ -29,6 +31,7 @@ export const login = createAsyncThunk(
     });
     
     if (!response.ok) {
+      toast.error('Login failed')
       throw new Error('Login failed');
     }
     
@@ -48,12 +51,19 @@ export const register = createAsyncThunk(
     });
     
     if (!response.ok) {
+      toast.error('Registration failed')
       throw new Error('Registration failed');
     }
-    
     const data = await response.json();
-    localStorage.setItem('token', data.token);
-    return data;
+    
+    if (!data.user){
+      toast.error("User already exist.");
+      return data
+    }
+    else {
+      localStorage.setItem('token', data.token);
+      return data;
+    }
   }
 );
 
