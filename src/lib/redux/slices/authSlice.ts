@@ -1,9 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { User } from '@/types/todo';
 import { toast } from 'sonner';
-import dotenv from 'dotenv'
-dotenv.config()
-const API_URL =process.env.API_URL
+
+const API_URL = import.meta.env.VITE_API_URL
 
 interface AuthState {
   user: User | null;

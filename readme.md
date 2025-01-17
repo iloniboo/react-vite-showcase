@@ -37,7 +37,7 @@ npm install
 
 3. Add environment variables in .env file: Create a .env file at the root of your project (if it doesn't already exist), and add the following:
 ```bash
-API_URL=<your-api-url>
+VITE_API_URL=<your-api-url>
 ```
 Replace <your-api-url> with the URL of the backend API (e.g., https://your-backend-url.com).
 You can clone backend from this.(https://github.com/eross220/every-vote-backend-test)
