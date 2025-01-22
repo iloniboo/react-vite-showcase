@@ -1,19 +1,19 @@
 # ⚡️ React Todo List
 
-A production-ready Todo application built with React, TypeScript, and modern web technologies. Features a beautiful UI, authentication, and real-time updates.
+A production-ready Todo application built with **React**, **TypeScript**, and modern web technologies. Designed with elegant UI, real-time updates, and robust authentication.
 
 ## ✨ Features
 
-- 🔐 User authentication (sign up/sign in)
-- ✅ Create, read, update, and delete todos
+- 🔐 Auth: Sign up / Sign in / Logout
+- ✅ Full CRUD for Todos
 - 📅 Due date tracking
-- 🌓 Dark/light mode
-- 🎯 Mark todos as complete
-- 🔔 Toast notifications
-- 📱 Responsive design
-- 🧪 Comprehensive test coverage
+- 🌗 Dark / Light mode toggle
+- 🎯 Mark todos as complete/incomplete
+- 🔔 Toast notifications for actions
+- 📱 Fully responsive design
+- 🧪 Unit tests + coverage
 
-## 🚀 Tech Stack
+## 🧰 Tech Stack
 
 - React 18
 - TypeScript
@@ -23,85 +23,117 @@ A production-ready Todo application built with React, TypeScript, and modern web
 - Vite
 - Vitest
 
-## 📦 Installation
+## 📁 Project Structure
 
-1. Clone the repository:
-```bash
-git clone <repository-url>
+```
+src/
+├── components/       # UI & form elements
+├── features/         # Todo & auth logic (Redux slices, hooks)
+├── pages/            # Main views (Home, Auth)
+├── routes/           # Protected route logic
+├── styles/           # Tailwind config & global styles
+└── utils/            # API helpers, validation, etc.
 ```
 
-2. Install dependencies:
+## ⚙️ Setup & Development
+
+### Prerequisites
+
+- Node.js >= 16
+- npm or yarn
+
+### Install dependencies
+
 ```bash
 npm install
 ```
 
-3. Add environment variables in .env file: Create a .env file at the root of your project (if it doesn't already exist), and add the following:
-```bash
-VITE_API_URL=<your-api-url>
+### Configure Environment
+
+Create a `.env` file at the project root:
+
+```env
+VITE_API_URL=https://your-backend-url.com
 ```
-Replace <your-api-url> with the URL of the backend API (e.g., https://your-backend-url.com).
-You can clone backend from this.(https://github.com/eross220/every-vote-backend-test)
 
+👉 You can clone the backend from [this repo](https://github.com/iloniboo/react-vite-showcase-backend)
 
-4. Start the development server:
+### Start Dev Server
+
 ```bash
 npm run dev
 ```
 
+### Build for Production
+
+```bash
+npm run build
+```
+
 ## 🧪 Testing
 
-Run the test suite:
-```bash
-# Run tests in watch mode
-npm test
+Run tests with coverage:
 
-# Generate coverage report
+```bash
+npm test        # Watch mode
 npm run coverage
 ```
 
-## 🛠️ Scripts
+## 🛠️ Available Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm test` - Run tests
+- `npm run dev` — Start dev server
+- `npm run build` — Build production assets
+- `npm test` — Run unit tests
+- `npm run coverage` — Generate coverage report
 
-## 📝 Usage
+## 🧭 Usage Guide
 
-1. **Authentication**
-   - Sign up with email and password
-   - Sign in with existing credentials
-   - Logout functionality
+### 🔐 Authentication
 
-2. **Todo Management**
-   - Create new todos with title, description, and due date
-   - Mark todos as complete/incomplete
-   - Edit existing todos
-   - Delete todos
-   - View all todos in a clean interface
+- Sign up with email & password
+- Sign in with existing credentials
+- Logout instantly
 
-3. **Theme**
-   - Toggle between light and dark mode
-   - System preference detection
+### 📋 Todo Management
 
-## 📱 Responsive Design
+- Create todos with title, description, and due date
+- Edit or delete existing todos
+- Toggle completion state
+- View all tasks in a clean, filterable list
 
-The application is fully responsive and works on:
-- Desktop
-- Tablet
-- Mobile devices
+### 🌓 Theming
+
+- Toggle dark/light mode
+- Auto-detect system preference
+
+## 📱 Responsive UI
+
+Works seamlessly across:
+
+- 🖥 Desktop
+- 📱 Mobile
+- 💻 Tablets
 
 ## 🔒 Security
 
 - Protected routes for authenticated users
-- Secure authentication flow
-- Form validation
-- Error handling
+- Secure auth flow with form validation
+- Error boundary + fallback UI
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Fork this repo
+2. Create a new branch `git checkout -b feature/amazing-feature`
+3. Commit your changes
+4. Push to GitHub
+5. Open a Pull Request 🚀
 
+---
+
+## 🧙‍♀️ Author
+
+Built by [Ilona](https://github.com/iloniboo) ✨
+
+## 📜 License
+
+MIT — use it freely.
